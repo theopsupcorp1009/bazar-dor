@@ -12,7 +12,7 @@ const Navlinks = async () => {
 
   return (
     <div className="border-y border-gray-100 mt-4">
-      <nav className="max-w-7xl mx-auto flex justify-start items-center py-4">
+      <nav className="container mx-auto flex justify-start items-center py-4">
         {data.map((item) => (
           <Link
             key={item.id}

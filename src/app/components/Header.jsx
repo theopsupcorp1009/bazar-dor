@@ -2,26 +2,35 @@ import { TiShoppingCart } from "react-icons/ti";
 import UserInfo from "./UserInfo";
 import Navlinks from "./Navlinks";
 import CurrentDate from "./CurrentDate";
-import Link from 'next/link';
+import Link from "next/link";
 
-const Header = () => {
+const Header = async () => {
+  const res = await fetch(`${process.env.DATA_API_URL}/categories`);
+  if (!res.ok) {
+    throw new Error("Failed to fetch categories");
+  }
+  const navItems = await res.json();
 
   return (
     <div className="py-4 bg-white">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <Link href="/" className="flex gap-2 items-center">
-            <div className=" bg-[#15803D] w-10 h-10 flex justify-center items-center rounded-[12px]">
-                <TiShoppingCart className="text-3xl text-gray-500" />
+      <div className="container mx-auto px-5 md:px-0 lg:px-0 flex justify-between items-center">
+        <Link href="/" className="flex gap-2 items-center">
+          <div className=" bg-[#15803D] w-10 h-10 flex justify-center items-center rounded-[12px]">
+            <TiShoppingCart className="text-3xl text-gray-500" />
+          </div>
+          <div>
+            <h2 className="font-bold">বাজার দর</h2>
+            <div className="text-[12px]">
+              <CurrentDate />
             </div>
-            <div>
-                <h2 className="font-bold">বাজার দর</h2>
-                <div className="text-[12px]"><CurrentDate/></div>
-            </div>
+          </div>
         </Link>
 
-        <UserInfo/>
+        <UserInfo navItems={navItems} />
       </div>
-      <Navlinks/>
+     <div className="hidden sm:block md:block lg:block">
+       <Navlinks/>
+     </div>
     </div>
   );
 };

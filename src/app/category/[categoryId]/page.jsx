@@ -23,7 +23,7 @@ const CategoryPage = async ({ params }) => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto">
+    <div className="container mx-auto">
       <CategorySection category={category} />
     </div>
   );

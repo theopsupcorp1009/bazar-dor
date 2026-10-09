@@ -7,15 +7,17 @@ import { useRouter } from "next/navigation";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import { TiThMenu } from "react-icons/ti";
+import MobileHeader from "./MobileHeader";
 
-const UserInfo = () => {
+const UserInfo = ({navItems}) => {
   const router = useRouter();
 
   const [open, setOpen] = useState(false);
+  const [expand, setExpand] = useState(false);
 
   const { data: session } = useSession();
   const user = session?.user;
-  console.log("User image:", session?.user?.image);
   
   const handleSignOut = async () => {
     await signOut({
@@ -30,10 +32,13 @@ const UserInfo = () => {
       },
     });
   };
-
   return (
-    <div className="flex gap-3 items-center">
-      {user ? (
+    <div>
+      <div className="relative sm:hidden md:hidden lg:hidden"> 
+            <MobileHeader navItems={navItems} />
+        </div>
+      <div className="flex gap-3 items-center hidden sm:block md:block lg:block">
+        {user ? (
         <div
           onClick={() => setOpen(!open)}
           className="relative flex items-center gap-2 cursor-pointer"
@@ -50,7 +55,7 @@ const UserInfo = () => {
             <span className="text-[10px]">▼</span>
           </div>
           {open && (
-            <div className="absolute top-10 right-22 z-50 bg-white border border-gray-100 shadow-md rounded-xl p-5 w-65">
+            <div className="absolute top-10 right-0 z-50 bg-white border border-gray-100 shadow-md rounded-xl p-5 w-65">
               <div>
                 <h2 className="font-semibold text-[14px]">{user.name}</h2>
                 <p className="text-[12px] text-gray-500">{user.email}</p>
@@ -86,6 +91,7 @@ const UserInfo = () => {
           </Link>
         </>
       )}
+      </div>
     </div>
   );
 };

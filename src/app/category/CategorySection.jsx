@@ -1,8 +1,8 @@
 import React from "react";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import ProductCard from "../components/ProductCard";
 import { notFound } from "next/navigation";
-import CategorySort from "../components/CategorySort";
+import SortedProducts from "../components/SortedProducts";
+
+
 
 const CategorySection = async ({ category }) => {
   const res = await fetch(
@@ -14,12 +14,6 @@ const CategorySection = async ({ category }) => {
     notFound();
   }
 
-  const toBanglaNumber = (value) => {
-    if (value === null || value === undefined) {
-      return "";
-    }
-    return value.toString().replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[digit]);
-  };
 
   return (
     <div>
@@ -28,12 +22,14 @@ const CategorySection = async ({ category }) => {
         <div className="space-y-1">
           <h2 className="font-bold text-[16px]">{category.nameBn}</h2>
           <p className="text-[12px] text-gray-500">
-            {toBanglaNumber(productData.length)}টি পণ্যের আজকের দাম ও পরিবর্তন
+            {(productData.length).toLocaleString("bn-BD")}টি পণ্যের আজকের দাম ও পরিবর্তন
           </p>
         </div>
       </div>
 
-      <CategorySort products={productData} />
+      <div className="mt-10">
+        <SortedProducts products={productData}/>
+      </div>
     </div>
   );
 };

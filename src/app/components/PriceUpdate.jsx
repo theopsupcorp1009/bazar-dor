@@ -1,6 +1,6 @@
 import React from "react";
-import AllProducts from "./AllProducts";
 import ProductCard from "./ProductCard";
+import SortedProducts from './SortedProducts';
 
 const PriceUpdate = async () => {
   const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products`);
@@ -37,7 +37,11 @@ const PriceUpdate = async () => {
           ))}
         </div>
       </div>
-      <AllProducts products={productData} />
+
+      <div className="mt-10" id="সব-পণ্য">
+        <h2 className="text-lg font-bold">সব পণ্য</h2>
+        <SortedProducts products={productData} />
+      </div>
     </div>
   );
 };

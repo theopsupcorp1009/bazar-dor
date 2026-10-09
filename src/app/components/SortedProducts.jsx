@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import ProductCard from "./ProductCard";
 
-const AllProductsPage = ({ products }) => {
+const SortedProducts = ({ products }) => {
   const [sort, setSort] = useState("default");
   const sortedProducts = [...products].sort((a, b) => {
     if (sort === "low") return a.today - b.today;
@@ -12,12 +12,11 @@ const AllProductsPage = ({ products }) => {
   });
 
   return (
-    <div className="mt-10" id="সব-পণ্য">
+    <div>
       <div className="flex justify-between items-center">
         <div>
-          <h2 className="text-lg font-bold">সব পণ্য</h2>
           <p className="text-[12px] text-gray-500">
-            মোট {sortedProducts.length}টি পণ্য দেখানো হচ্ছে
+            মোট {(sortedProducts.length).toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
           </p>
         </div>
 
@@ -49,4 +48,4 @@ const AllProductsPage = ({ products }) => {
   );
 };
 
-export default AllProductsPage;
+export default SortedProducts;

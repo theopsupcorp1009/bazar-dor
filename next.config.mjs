@@ -4,6 +4,7 @@ const nextConfig = {
   experimental: {
     agentFeedback: true,
   },
+  allowedDevOrigins: ['192.168.0.106'],
   reactCompiler: true,
   images: {
     remotePatterns: [

@@ -6,6 +6,11 @@ const client = new MongoClient(process.env.MONGODB_URL);
 const db = client.db("bazar-dor-db");
 
 export const auth = betterAuth({
+  trustedOrigins: [
+    "http://localhost:3000",
+    "http://192.168.0.106:3000",
+  ],
+
   database: mongodbAdapter(db, {
     client,
   }),

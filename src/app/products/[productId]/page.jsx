@@ -27,12 +27,7 @@ const ProductPage = async ({ params }) => {
     notFound();
   }
 
-  const toBanglaNumber = (value) => {
-    if (value === null || value === undefined) {
-      return "";
-    }
-    return value.toString().replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[digit]);
-  };
+  const isUp = product?.change.pct === "up";
 
   const unitNames = {
     kg: "কেজি",
@@ -51,8 +46,6 @@ const ProductPage = async ({ params }) => {
   const priceFlactuation = Math.abs(
     Number(product.today) - Number(product.yesterday),
   );
-
-  const isUp = product.change?.dir === "up";
 
   const markets = product.markets || [];
   const lowestPrice = Math.min(...markets.map((market) => market.min));
@@ -84,7 +77,7 @@ const ProductPage = async ({ params }) => {
               </span>{" "}
               ·{" "}
               <span className="font-normal">
-                {toBanglaNumber(priceFlactuation)} টাকা
+                {(priceFlactuation).toLocaleString("bn-BD")} টাকা
               </span>
             </p>
           </div>
@@ -92,16 +85,23 @@ const ProductPage = async ({ params }) => {
         <div className="text-center space-y-1 bg-[#F0F5F0] py-4 px-6 rounded-xl">
           <p className="text-[12px] font-medium text-gray-500">আজকের দাম</p>
           <p className="text-4xl font-bold text-gray-900">
-            {toBanglaNumber(product.today)}
+            {(product.today).toLocaleString("bn-BD")}
           </p>
           <p className="text-[12px] text-gray-500">টাকা / {unitBn}</p>
           <p
-            className={`ml-1 flex items-center gap-0.5 font-bold bg-[#F0F5F0] px-2 rounded-[8px] ${
-              product.change.dir === "up" ? "text-red-600" : "text-emerald-600"
-            }`}
+            className={`ml-1 flex items-center gap-1.5 font-bold bg-[#F0F5F0] px-2 rounded-[8px] ${
+                product.change.dir === "up"
+                  ? "text-red-600"
+                  : product.change.dir === "down"
+                    ? "text-emerald-600"
+                    : "text-gray-500"
+              }`}
           >
-            {isUp ? "▲" : "▼"}
-            {toBanglaNumber(product.change.pct)}%
+           <span> {product.change.dir==="up" ? "▲" : product.change.dir==="down" ? "▼" : "— "}</span>
+            <span>{Number(Math.abs(product.change.pct)).toLocaleString("bn-BD", {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1,
+                })}%</span>
           </p>
         </div>
       </div>
@@ -113,7 +113,7 @@ const ProductPage = async ({ params }) => {
             <div className="border border-gray-100 shadow-sm rounded-xl p-5">
               <p className="text-[12px]">সর্বনিম্ন দাম</p>
               <h2 className="font-bold text-[24px] text-green-500">
-                {toBanglaNumber(lowestPrice)}{" "}
+                {(lowestPrice).toLocaleString("bn-BD")}{" "}
                 <span className="text-[14px] font-mono">টাকা</span>
               </h2>
               <p>সবচেয়ে কম দামের বাজার</p>
@@ -121,7 +121,7 @@ const ProductPage = async ({ params }) => {
             <div className="border border-gray-100 shadow-sm rounded-xl p-5">
               <p className="text-[12px]">সর্বাধিক দাম</p>
               <h2 className="font-bold text-[24px] text-red-500">
-                {toBanglaNumber(highestPrice)}{" "}
+                {(highestPrice).toLocaleString("bn-BD")}{" "}
                 <span className="text-[14px] font-mono">টাকা</span>
               </h2>
               <p>সবচেয়ে বেশী দামের বাজার</p>
@@ -129,7 +129,7 @@ const ProductPage = async ({ params }) => {
             <div className="border border-gray-100 shadow-sm rounded-xl p-5">
               <p className="text-[12px]">গড় দাম</p>
               <h2 className="font-bold text-[24px] text-green-500">
-                {toBanglaNumber(Math.trunc(averagePrice))}{" "}
+                {(Math.trunc(averagePrice)).toLocaleString("bn-BD")}{" "}
                 <span className="text-[14px] font-mono">টাকা</span>
               </h2>
               <p>প্রতি {unitBn} এর হিসাবে</p>
@@ -180,15 +180,15 @@ const ProductPage = async ({ params }) => {
                         </td>
 
                         <td className="px-4 py-3.5 text-right font-medium text-gray-800">
-                          {toBanglaNumber(market.min)} টাকা
+                          {(market.min).toLocaleString("bn-BD")} টাকা
                         </td>
 
                         <td className="px-4 py-3.5 text-right font-medium text-gray-800">
-                          {toBanglaNumber(market.max)} টাকা
+                          {(market.max).toLocaleString("bn-BD")} টাকা
                         </td>
 
                         <td className="px-4 py-3.5 text-right font-bold text-black">
-                          {toBanglaNumber(average)} টাকা
+                          {(average).toLocaleString("bn-BD")} টাকা
                         </td>
                       </tr>
                     );

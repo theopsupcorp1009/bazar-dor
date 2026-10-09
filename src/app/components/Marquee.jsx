@@ -4,33 +4,23 @@ import MarqueeText from "react-marquee-text";
 import "react-marquee-text/dist/styles.css";
 
 const Marquee = async () => {
-  const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/products",
-  );
+  const res = await fetch("https://api.abcz.workers.dev/api/bazardor/products");
   if (!res.ok) {
     throw new Error("Failed to fetch product data");
   }
   const data = await res.json();
 
-  const toBanglaNumber = (value) => {
-    if (value === null || value === undefined) {
-      return "";
-    }
-    return value.toString().replace(/\d/g, (digit) => "০১২৩৪৫৬৭৮৯"[digit]);
-  };
-
   const unitNames = {
-  kg: "কেজি",
-  g: "গ্রাম",
-  gram: "গ্রাম",
-  liter: "লিটার",
-  litre: "লিটার",
-  ml: "মিলিলিটার",
-  piece: "পিস",
-  pieces: "পিস",
-  dozen: "ডজন",
-};
-
+    kg: "কেজি",
+    g: "গ্রাম",
+    gram: "গ্রাম",
+    liter: "লিটার",
+    litre: "লিটার",
+    ml: "মিলিলিটার",
+    piece: "পিস",
+    pieces: "পিস",
+    dozen: "ডজন",
+  };
 
   return (
     <div className="border-b border-gray-100 pb-4 bg-white">
@@ -44,19 +34,32 @@ const Marquee = async () => {
             <span className="text-base leading-none">{product.image}</span>
             <span>{product.nameBn}</span>
             <span className="ml-0.5 text-gray-900">
-              {toBanglaNumber(product.today)} টাকা/{unitNames[product.unit?.toLowerCase()] || product.unit}
+              {product.today.toLocaleString("bn-BD")} টাকা/
+              {unitNames[product.unit?.toLowerCase()] || product.unit}
             </span>
             <span
               className={`ml-1 flex items-center gap-0.5 font-bold ${
                 product.change.dir === "up"
                   ? "text-red-600"
-                  : "text-emerald-600"
+                  : product.change.dir === "down"
+                    ? "text-emerald-600"
+                    : "text-gray-500"
               }`}
             >
               <span className="text-[10px]">
-                {product.change.dir === "up" ? "▲" : "▼"}
+                {product.change.dir === "up"
+                  ? "▲"
+                  : product.change.dir === "down"
+                    ? "▼"
+                    : "—"}
               </span>
-              <span>{toBanglaNumber(product.change.pct)}%</span>
+              <span>
+                {Number(Math.abs(product.change.pct)).toLocaleString("bn-BD", {
+                  minimumFractionDigits: 1,
+                  maximumFractionDigits: 1,
+                })}
+                %
+              </span>
             </span>
           </Link>
         ))}

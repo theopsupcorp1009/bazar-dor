@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
 import { useSession, signOut, updateUser } from "../../../lib/auth-client";
-import React from 'react';
+import React from "react";
 import { toast } from "react-toastify";
-import {
-  FaSignOutAlt,
-} from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const ProfilePage = () => {
+  const router = useRouter();
   const { data: session } = useSession();
   const user = session?.user;
 
-  const handleUpdateUser = async(e) => {
+  const handleUpdateUser = async (e) => {
     e.preventDefault();
-     const formData = new FormData(e.currentTarget);
+    const formData = new FormData(e.currentTarget);
 
     const newUser = Object.fromEntries(formData.entries());
 
@@ -31,9 +32,8 @@ const ProfilePage = () => {
     } catch {
       toast.error("প্রোফাইল আপডেট করতে সমস্যা হয়েছে");
     }
-  }
+  };
 
-  
   const handleSignOut = async () => {
     await signOut({
       fetchOptions: {
@@ -58,21 +58,20 @@ const ProfilePage = () => {
           </p>
         </div>
 
-        
         <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <img
+            <Image
               src={user?.image || "/assets/avatar.jpg"}
               alt="Avatar"
+              width={64}
+              height={64}
               className="w-16 h-16 rounded-2xl object-cover"
             />
             <div>
               <h2 className="font-bold text-xl text-gray-900">
                 {user?.name || "User"}
               </h2>
-              <p className="text-sm text-gray-500">
-                {user?.email || ""}
-              </p>
+              <p className="text-sm text-gray-500">{user?.email || ""}</p>
             </div>
           </div>
 
@@ -81,11 +80,10 @@ const ProfilePage = () => {
             onClick={handleSignOut}
             className="cursor-pointer flex items-center gap-1 text-red-500 border border-red-300 hover:bg-red-50 font-medium px-4 py-2 rounded-xl text-sm transition-colors"
           >
-            <FaSignOutAlt/> সাইন আউট
+            <FaSignOutAlt /> সাইন আউট
           </button>
         </div>
 
-      
         <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm space-y-6">
           <h2 className="font-bold text-lg text-gray-900">তথ্য</h2>
 

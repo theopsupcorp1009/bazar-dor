@@ -4,11 +4,8 @@ import React from "react";
 import Link from "next/link";
 import { useSession, signOut } from "../../lib/auth-client";
 import { useRouter } from "next/navigation";
-import {
-  FaUserEdit,
-  FaSignOutAlt,
-  FaEnvelope,
-} from "react-icons/fa";
+import Image from "next/image";
+import { FaUserEdit, FaSignOutAlt, FaEnvelope } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const ProfilePage = () => {
@@ -24,9 +21,7 @@ const ProfilePage = () => {
           router.push("/sign-in");
         },
         onError: (ctx) => {
-          toast.error(
-            ctx.error.message || "সাইন আউট করতে সমস্যা হয়েছে"
-          );
+          toast.error(ctx.error.message || "সাইন আউট করতে সমস্যা হয়েছে");
         },
       },
     });
@@ -47,9 +42,7 @@ const ProfilePage = () => {
   if (!user) {
     return (
       <div className="flex min-h-[60vh] flex-col items-center justify-center gap-4 px-4 text-center">
-        <h2 className="text-xl font-bold">
-          আপনাকে সাইন ইন করতে হবে
-        </h2>
+        <h2 className="text-xl font-bold">আপনাকে সাইন ইন করতে হবে</h2>
 
         <Link
           href="/sign-in"
@@ -65,9 +58,7 @@ const ProfilePage = () => {
     <main className="min-h-screen bg-[#f3f8f3] px-4 py-10 text-[#1c1d1d] sm:px-6 md:py-14">
       <div className="mx-auto max-w-4xl space-y-7">
         <div>
-          <p className="mb-2 text-sm font-medium text-[#15803D]">
-            BAZAR DOR
-          </p>
+          <p className="mb-2 text-sm font-medium text-[#15803D]">BAZAR DOR</p>
 
           <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
             আমার প্রোফাইল
@@ -83,9 +74,11 @@ const ProfilePage = () => {
 
           <div className="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-8">
             <div className="flex min-w-0 items-center gap-4">
-              <img
+              <Image
                 src={user.image || "/assets/avatar.jpg"}
                 alt={user.name || "User"}
+                width={96}
+                height={96}
                 className="h-20 w-20 shrink-0 rounded-2xl border border-gray-100 object-cover sm:h-24 sm:w-24"
               />
 

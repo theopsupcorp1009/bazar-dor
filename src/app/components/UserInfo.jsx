@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useSession, signOut } from "../../lib/auth-client";
 import { useRouter } from "next/navigation";
 import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
+import { toast } from "react-toastify";
+import Image from "next/image";
 
 const UserInfo = () => {
   const router = useRouter();
@@ -13,9 +15,7 @@ const UserInfo = () => {
 
   const { data: session } = useSession();
   const user = session?.user;
-
-  console.log(user);
-
+  console.log("User image:", session?.user?.image);
   
   const handleSignOut = async () => {
     await signOut({
@@ -38,9 +38,11 @@ const UserInfo = () => {
           onClick={() => setOpen(!open)}
           className="relative flex items-center gap-2 cursor-pointer"
         >
-          <img
-            src={user.image || "/assets/avatar.jpg"}
+          <Image
+            src={user?.image || "/assets/avatar.jpg"}
             alt={user.name || "User"}
+            width={40}
+            height={40}
             className="w-10 h-10 rounded-full object-cover"
           />
           <div className="grid grid-cols-2 items-center gap-2">

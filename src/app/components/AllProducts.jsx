@@ -1,0 +1,52 @@
+"use client";
+
+import React, { useState } from "react";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import ProductCard from "./ProductCard";
+
+const AllProductsPage = ({ products }) => {
+  const [sort, setSort] = useState("default");
+  const sortedProducts = [...products].sort((a, b) => {
+    if (sort === "low") return a.today - b.today;
+    if (sort === "high") return b.today - a.today;
+  });
+
+  return (
+    <div className="mt-10" id="সব-পণ্য">
+      <div className="flex justify-between items-center">
+        <div>
+          <h2 className="text-lg font-bold">সব পণ্য</h2>
+          <p className="text-[12px] text-gray-500">
+            মোট {sortedProducts.length}টি পণ্য দেখানো হচ্ছে
+          </p>
+        </div>
+
+        <div className="text-[12px] flex gap-3 items-center justify-end">
+          <p className="text-gray-500 ">সাজান</p>
+
+          <div className="relative">
+            <select
+              value={sort}
+              onChange={(e) => setSort(e.target.value)}
+              className="text-gray-700 w-25 appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 pr-7 text-sm outline-none cursor-pointer focus:border-black focus:w-auto"
+            >
+              <option value="default">ডিফল্ট</option>
+              <option value="low">দাম: কম থেকে বেশী</option>
+              <option value="high">দাম: বেশী থেকে কম</option>
+            </select>
+
+            <RiArrowDropDownLine className="text-2xl pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 grid grid-cols-3 gap-5">
+        {sortedProducts.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default AllProductsPage;

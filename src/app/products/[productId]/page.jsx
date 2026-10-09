@@ -109,7 +109,7 @@ const ProductPage = async ({ params }) => {
       <div className="bg-white mt-10 rounded-xl">
         <div className="p-5">
           <h2 className="text-lg font-semibold">দামের সারসংক্ষেপ</h2>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-3 gap-5 mt-5">
             <div className="border border-gray-100 shadow-sm rounded-xl p-5">
               <p className="text-[12px]">সর্বনিম্ন দাম</p>
               <h2 className="font-bold text-[24px] text-green-500">
@@ -137,9 +137,6 @@ const ProductPage = async ({ params }) => {
           </div>
         </div>
         <div className="rounded-[12px] shadow-sm overflow-hidden">
-          <div className="p-5">
-            <h2 className="text-lg font-semibold">বাজারভিত্তিক আজকের দাম</h2>
-          </div>
 
           <div className="border border-gray-100 shadow-sm rounded-[20px] p-6 m-5 space-y-4">
             <h3 className="text-lg font-bold text-[#1c2a1e]">

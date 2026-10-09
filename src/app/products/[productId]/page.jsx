@@ -163,7 +163,7 @@ const ProductPage = async ({ params }) => {
                 </thead>
 
                 <tbody>
-                  {product.markets.map((market, index) => {
+                  {product.markets.map((market) => {
                     const average = (market.min + market.max) / 2;
 
                     return (

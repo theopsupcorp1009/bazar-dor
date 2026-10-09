@@ -6,7 +6,7 @@ import SortedProducts from "../components/SortedProducts";
 
 const CategorySection = async ({ category }) => {
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/products?category=${category.slug}`,
+    `${process.env.DATA_API_URL}/products?category=${category.slug}`,
   );
   const productData = await res.json();
 

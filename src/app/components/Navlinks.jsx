@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navlinks = async () => {
   const res = await fetch(
-    "https://api.abcz.workers.dev/api/bazardor/categories",
+    `${process.env.DATA_API_URL}/categories`,
   );
   if (!res.ok) {
     throw new Error("Failed to fetch categories");

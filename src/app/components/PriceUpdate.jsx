@@ -3,7 +3,7 @@ import ProductCard from "./ProductCard";
 import SortedProducts from './SortedProducts';
 
 const PriceUpdate = async () => {
-  const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products`);
+  const res = await fetch(`${process.env.DATA_API_URL}/products`);
   const productData = await res.json();
   const firstSixPriceIncrement = productData
     .filter((product) => product.change.dir === "up")

@@ -8,7 +8,7 @@ const ProductPage = async ({ params }) => {
 
   try {
     const res = await fetch(
-      `https://api.abcz.workers.dev/api/bazardor/products/${productId}`,
+      `${process.env.DATA_API_URL}/products/${productId}`,
     );
 
     if (res.status === 404) {

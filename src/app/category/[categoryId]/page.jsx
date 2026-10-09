@@ -6,7 +6,7 @@ const CategoryPage = async ({ params }) => {
   const { categoryId } = await params;
 
   const res = await fetch(
-    `https://api.abcz.workers.dev/api/bazardor/categories/${categoryId}`,
+    `${process.env.DATA_API_URL}/categories/${categoryId}`,
   );
   if (res.status === 404) {
     notFound();

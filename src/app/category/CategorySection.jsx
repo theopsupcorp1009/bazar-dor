@@ -9,8 +9,11 @@ const CategorySection = async ({ category }) => {
   );
   const productData = await res.json();
 
+  if (productData.length === 0) {
+    notFound();
+  }
 
-    const toBanglaNumber = (value) => {
+  const toBanglaNumber = (value) => {
     if (value === null || value === undefined) {
       return "";
     }
@@ -48,7 +51,9 @@ const CategorySection = async ({ category }) => {
       </p>
       <div>
         <div className="mt-5 grid grid-cols-3 gap-5">
-          {productData.map((product) => <ProductCard key={product.id} product={product}/>)}
+          {productData.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
         </div>
       </div>
     </div>

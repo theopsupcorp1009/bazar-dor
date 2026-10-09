@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <Footer/>
-        <ToastContainer duration={1000}/>
+        <ToastContainer autoClose={1000}/>
         </body>
     </html>
   );

@@ -25,7 +25,7 @@ const ProductCard = ({product}) => {
 
     return (
         <Link key={product.id} href={`/products/${product.id}`}>
-              <div className="bg-white p-4 rounded-xl shadow-sm">
+              <div className="bg-white p-4 rounded-xl shadow-sm hover:border hover:border-[#00ff80]">
                 <div className="flex gap-3 items-center">
                   <span className="text-3xl bg-[#F0F5F0] p-2 rounded-xl">
                     {product.image}

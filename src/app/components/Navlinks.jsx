@@ -26,7 +26,7 @@ const Navlinks = async () => {
                 text-[12px]
                 transition-all duration-200
                 hover:bg-green-50
-                hover:text-green-700
+                hover:text-green-500
             "
           >
             <span className="text-[12px] leading-none">{item.icon}</span>

@@ -16,7 +16,8 @@ export async function proxy(request) {
       "callbackUrl",
       request.nextUrl.pathname + request.nextUrl.search
     );
-
+    
+    signInUrl.searchParams.set("reason", "unauthenticated");
     return NextResponse.redirect(signInUrl);
   }
 }

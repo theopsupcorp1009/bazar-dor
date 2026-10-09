@@ -1,11 +1,14 @@
 import React from "react";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import ProductCard from "../components/ProductCard";
+import { notFound } from "next/navigation";
+
 const CategorySection = async ({ category }) => {
   const res = await fetch(
     `https://api.abcz.workers.dev/api/bazardor/products?category=${category.slug}`,
   );
   const productData = await res.json();
+
 
     const toBanglaNumber = (value) => {
     if (value === null || value === undefined) {

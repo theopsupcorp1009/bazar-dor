@@ -1,4 +1,3 @@
-import React, { Suspense } from "react";
 import { TiShoppingCart } from "react-icons/ti";
 import UserInfo from "./UserInfo";
 import Navlinks from "./Navlinks";
@@ -22,9 +21,7 @@ const Header = () => {
 
         <UserInfo/>
       </div>
-    {/* <Suspense fallback={<loading/>}> */}
       <Navlinks/>
-      {/* </Suspense> */}
     </div>
   );
 };

@@ -3,7 +3,6 @@ import "./globals.css";
 import Header from "./components/Header";
 import Marquee from "./components/Marquee";
 import Footer from "./components/Footer";
-import { Suspense } from "react";
 import { ToastContainer } from "react-toastify";
 
 const notoSerifBengali = Noto_Serif_Bengali({
@@ -25,14 +24,12 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <Header/>
-        {/* <Suspense fallback={<loading/>}> */}
           <Marquee/>
-        {/* </Suspense> */}
         <main>
           {children}
         </main>
         <Footer/>
-        <ToastContainer/>
+        <ToastContainer duration={1000}/>
         </body>
     </html>
   );

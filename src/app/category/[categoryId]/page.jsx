@@ -1,22 +1,30 @@
-import React, { Suspense } from "react";
+import React from "react";
 import CategorySection from "../CategorySection";
+import { notFound } from "next/navigation";
+
 const CategoryPage = async ({ params }) => {
   const { categoryId } = await params;
 
   const res = await fetch(
     `https://api.abcz.workers.dev/api/bazardor/categories/${categoryId}`,
   );
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+  if (res.status === 404) {
+    notFound();
   }
+
+  if (!res.ok) {
+    throw new Error(`Failed to fetch category: ${res.status}`);
+  }
+
   const category = await res.json();
-  console.log(category);
+
+  if (!category || !category.slug) {
+    notFound();
+  }
 
   return (
     <div className="max-w-7xl mx-auto">
-      <Suspense fallback="Loading...">
-        <CategorySection category={category}/>
-      </Suspense>
+      <CategorySection category={category} />
     </div>
   );
 };

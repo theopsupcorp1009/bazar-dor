@@ -1,20 +1,30 @@
+import { notFound } from "next/navigation";
 import React from "react";
 
 const ProductPage = async ({ params }) => {
   const { productId } = await params;
+  let product;
+  let productNotFound = false;
+
   try {
     const res = await fetch(
       `https://api.abcz.workers.dev/api/bazardor/products/${productId}`,
     );
 
-    if (!res.ok) {
+    if (res.status === 404) {
+      productNotFound = true;
+    } else if (!res.ok) {
       throw new Error(`Failed to fetch product: ${res.status}`);
+    } else {
+      product = await res.json();
     }
-
-    product = await res.json();
   } catch (error) {
     console.error("Error fetching product:", error);
     throw new Error("Failed to load product data");
+  }
+
+  if (productNotFound) {
+    notFound();
   }
 
   const toBanglaNumber = (value) => {

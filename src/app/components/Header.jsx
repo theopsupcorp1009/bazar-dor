@@ -14,7 +14,10 @@ const Header = async () => {
   return (
     <div className="py-4 bg-white">
       <div className="container mx-auto px-5 md:px-0 lg:px-0 flex justify-between items-center">
-        <Link href="/" className="flex gap-2 items-center">
+        <Link
+          href="/"
+          className="flex gap-2 items-center hover:scale-105 transition-transform duration-200"
+        >
           <div className=" bg-[#15803D] w-10 h-10 flex justify-center items-center rounded-[12px]">
             <TiShoppingCart className="text-3xl text-gray-500" />
           </div>
@@ -28,9 +31,9 @@ const Header = async () => {
 
         <UserInfo navItems={navItems} />
       </div>
-     <div className="hidden sm:block md:block lg:block">
-       <Navlinks/>
-     </div>
+      <div className="hidden sm:block md:block lg:block">
+        <Navlinks />
+      </div>
     </div>
   );
 };

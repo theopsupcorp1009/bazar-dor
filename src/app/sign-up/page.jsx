@@ -170,22 +170,22 @@ const SignUpPage = () => {
             <div className="flex-1 h-[2px] bg-[#e5e8e5]" />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-3">
             <button
               type="button"
               onClick={handleGoogleSignIn}
-              className="h-[41px] flex items-center justify-center gap-2 rounded-[9px] border border-[#dce5dd] bg-white hover:bg-gray-50 text-[14px] font-semibold text-[#26332a] transition-colors cursor-pointer"
+              className="h-[49px] flex items-center justify-center gap-2 rounded-[10px] border border-[#dce5dd] bg-white hover:bg-gray-50 text-[15px] font-semibold text-[#26332a] transition-colors cursor-pointer"
             >
-              <FcGoogle className="text-[17px] text-[#4285F4]" />
+              <FcGoogle className="text-[18px] text-[#4285F4]" />
               Google দিয়ে চালিয়ে যান
             </button>
 
             <button
               type="button"
               onClick={handleGithubSignIn}
-              className="h-[41px] flex items-center justify-center gap-2 rounded-[9px] border border-[#dce5dd] bg-white hover:bg-gray-50 text-[14px] font-semibold text-[#26332a] transition-colors cursor-pointer"
+              className="h-[49px] flex items-center justify-center gap-2 rounded-[10px] border border-[#dce5dd] bg-white hover:bg-gray-50 text-[15px] font-semibold text-[#26332a] transition-colors cursor-pointer"
             >
-              <FaGithub className="text-[18px] text-[#222]" />
+              <FaGithub className="text-[19px] text-[#222]" />
               GitHub দিয়ে চালিয়ে যান
             </button>
           </div>

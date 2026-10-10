@@ -55,9 +55,9 @@ const ProfilePage = () => {
   }
 
   return (
-    <main className="min-h-screen bg-[#f3f8f3] px-4 py-10 text-[#1c1d1d] sm:px-6 md:py-14">
-      <div className="mx-auto max-w-4xl space-y-7">
-        <div>
+    <main className="container mx-auto bg-[#f3f8f3] px-4 py-10 text-[#1c1d1d] px-5 md:py-14">
+      <div className="max-w-4xl mx-auto space-y-7">
+        <div className="text-center sm:text-left md:text-left lg:text-left">
           <p className="mb-2 text-sm font-medium text-[#15803D]">BAZAR DOR</p>
 
           <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
@@ -92,16 +92,13 @@ const ProfilePage = () => {
                   {user.email}
                 </p>
 
-                <span className="mt-3 inline-flex rounded-full bg-green-50 px-3 py-1 text-xs font-medium text-[#15803D]">
-                  সক্রিয় অ্যাকাউন্ট
-                </span>
               </div>
             </div>
 
             <button
               type="button"
               onClick={handleSignOut}
-              className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 self-start rounded-xl border border-red-200 px-4 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 sm:self-center"
+              className="inline-flex shrink-0 cursor-pointer items-center justify-center gap-2 rounded-xl border border-red-200 px-4 py-2.5 text-sm font-medium text-red-600 transition hover:bg-red-50 sm:self-center"
             >
               <FaSignOutAlt />
               সাইন আউট

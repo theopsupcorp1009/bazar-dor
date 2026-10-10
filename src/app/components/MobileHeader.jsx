@@ -8,6 +8,7 @@ import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Image from "next/image";
 import { TiThMenu } from "react-icons/ti";
+import { FaSignInAlt, FaUserPlus } from "react-icons/fa";
 
 const MobileHeader = ({ navItems }) => {
   const router = useRouter();
@@ -51,7 +52,6 @@ const MobileHeader = ({ navItems }) => {
       </div>
       {expand && (
         <div className="absolute top-full right-0 z-50 mt-3 w-64 max-w-[90vw] overflow-hidden rounded-xl border border-gray-200 bg-white p-2 shadow-xl">
-       
           {user && (
             <div className="mb-2 flex items-center gap-3 rounded-lg bg-green-50 p-3">
               <Image
@@ -97,7 +97,7 @@ const MobileHeader = ({ navItems }) => {
 
           <div className="mt-2 border-t border-gray-200 pt-2">
             {user ? (
-              <>
+              <div className="grid">
                 <Link
                   href="/profile"
                   onClick={() => setExpand(false)}
@@ -115,25 +115,27 @@ const MobileHeader = ({ navItems }) => {
                   <FaSignOutAlt className="w-5 shrink-0 text-base" />
                   <span>সাইন আউট</span>
                 </button>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="grid">
                 <Link
                   href="/sign-in"
                   onClick={() => setExpand(false)}
-                  className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-100"
+                  className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-bold text-gray-700 hover:bg-gray-100"
                 >
+                  <FaSignInAlt className="mr-2" />
                   সাইন ইন
                 </Link>
 
                 <Link
                   href="/sign-up"
                   onClick={() => setExpand(false)}
-                  className="flex w-full items-center rounded-lg bg-green-700 px-3 py-2.5 text-sm font-medium text-white transition-colors hover:bg-green-800"
+                  className="flex w-full items-center rounded-lg px-3 py-2.5 text-sm font-bold transition-colors hover:bg-green-800"
                 >
+                  <FaUserPlus className="mr-2" />
                   সাইন আপ
                 </Link>
-              </>
+              </div>
             )}
           </div>
         </div>

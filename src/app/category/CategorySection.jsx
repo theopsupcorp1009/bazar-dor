@@ -17,7 +17,7 @@ const CategorySection = async ({ category }) => {
 
   return (
     <div>
-      <div className="border border-gray-100 rounded-xl p-5 mt-5 shadow-sm flex items-center gap-1 bg-white">
+      <div className="border border-gray-100 rounded-xl p-5 mt-5 md:mt-10 lg:mt-10 shadow-sm flex items-center gap-1 bg-white">
         <span className="text-2xl">{category.icon}</span>
         <div className="space-y-1">
           <h2 className="font-bold text-[16px]">{category.nameBn}</h2>
@@ -27,7 +27,7 @@ const CategorySection = async ({ category }) => {
         </div>
       </div>
 
-      <div className="mt-10">
+      <div className="mt-5">
         <SortedProducts products={productData}/>
       </div>
     </div>

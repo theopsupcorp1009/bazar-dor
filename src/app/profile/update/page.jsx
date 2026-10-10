@@ -49,36 +49,39 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#f3f6f3] p-8 md:p-12 text-[#1c1d1d]">
+    <div className="container mx-auto bg-[#f3f6f3] px-5 lg:px-0 text-[#1c1d1d] mt-15">
       <div className="max-w-4xl mx-auto space-y-6">
-        <div>
+        <div className="text-center sm:text-left md:text-left lg:text-left">
           <h1 className="font-bold text-2xl text-gray-900">আমার প্রোফাইল</h1>
           <p className="text-sm text-gray-500 mt-1">
             আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন।
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex items-center justify-between">
-          <div className="flex items-center gap-4">
+        <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm flex flex-col items-center gap-5 sm:flex-row sm:justify-between">
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
             <Image
               src={user?.image || "/assets/avatar.jpg"}
               alt="Avatar"
               width={64}
               height={64}
-              className="w-16 h-16 rounded-2xl object-cover"
+              className="w-16 h-16 rounded-2xl object-cover shrink-0"
             />
-            <div>
+
+            <div className="text-center sm:text-left">
               <h2 className="font-bold text-xl text-gray-900">
                 {user?.name || "User"}
               </h2>
-              <p className="text-sm text-gray-500">{user?.email || ""}</p>
+              <p className="text-sm text-gray-500 break-all">
+                {user?.email || ""}
+              </p>
             </div>
           </div>
 
           <button
             type="button"
             onClick={handleSignOut}
-            className="cursor-pointer flex items-center gap-1 text-red-500 border border-red-300 hover:bg-red-50 font-medium px-4 py-2 rounded-xl text-sm transition-colors"
+            className="cursor-pointer flex items-center justify-center gap-1 text-red-500 border border-red-300 hover:bg-red-50 font-medium px-4 py-2 rounded-xl text-sm transition-colors w-full sm:w-auto"
           >
             <FaSignOutAlt /> সাইন আউট
           </button>

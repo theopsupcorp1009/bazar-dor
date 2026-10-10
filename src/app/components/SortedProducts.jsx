@@ -16,26 +16,23 @@ const SortedProducts = ({ products }) => {
       <div className="flex justify-between items-center">
         <div>
           <p className="text-[12px] text-gray-500">
-            মোট {(sortedProducts.length).toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
+            মোট {sortedProducts.length.toLocaleString("bn-BD")}টি পণ্য দেখানো
+            হচ্ছে
           </p>
         </div>
 
         <div className="text-[12px] flex gap-3 items-center justify-end">
           <p className="text-gray-500 ">সাজান</p>
 
-          <div className="relative">
-            <select
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-              className="text-gray-700 w-25 appearance-none rounded-lg border border-gray-300 bg-white px-3 py-2 pr-7 text-sm outline-none cursor-pointer focus:border-black focus:w-auto"
-            >
-              <option value="default">ডিফল্ট</option>
-              <option value="low">দাম: কম থেকে বেশী</option>
-              <option value="high">দাম: বেশী থেকে কম</option>
-            </select>
-
-            <RiArrowDropDownLine className="text-2xl pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-500" />
-          </div>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value)}
+            className="cursor-pointer select select-ghost w-auto border border-gray-300 rounded-xl hadow-sm bg-white font-inter text-gray-700 text-sm outline-none focus:border-black focus:w-auto"
+          >
+            <option value="default">ডিফল্ট</option>
+            <option value="low">দাম: কম থেকে বেশী</option>
+            <option value="high">দাম: বেশী থেকে কম</option>
+          </select>
         </div>
       </div>
 

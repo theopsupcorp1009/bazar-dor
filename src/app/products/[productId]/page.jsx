@@ -96,7 +96,7 @@ const ProductPage = async ({ params }) => {
           </div>
 
           <p
-            className={`flex items-center gap-1.5 rounded-[8px] bg-[#F0F5F0] px-2 font-bold ${
+            className={`flex items-center gap-1 rounded-[8px] bg-[#F0F5F0] px-2 font-bold ${
               product.change.dir === "up"
                 ? "text-red-600"
                 : product.change.dir === "down"

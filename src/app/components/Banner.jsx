@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="px-5 sm:px-0 md:px-0 lg:px-0">
       <div className="container mx-auto mt-5 md:mt-10 lg:mt-10 bg-white border border-gray-200/60 rounded-[28px] p-12 sm:p-12 flex flex-col md:flex-row justify-between items-center gap-8 shadow-sm">
-      <div className="space-y-5 text-center md:text-left lg:text-left">
+      <div className="space-y-6 text-center md:text-left lg:text-left">
         <div className="space-y-3">
           <span className="inline-block bg-[#e8f2e6] text-[#2d6a4f] text-sm font-medium px-4 py-1.5 rounded-full">
             <CurrentDate/>
